@@ -1,5 +1,41 @@
+name: trending-topics
+
 services:
   redis:
     image: 'redis:latest'
+    restart: 'unless-stopped'
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
+      start_period: '10s'
+    networks:
+      - backend
+  summary-cache:
+    image: 'summary-cache:latest'
+    restart: 'unless-stopped'
+    environment:
+      - APPLICATION_CONFIGS=/application/configs/summary-cache.yaml
+      - APPLICATION_SECRETS=/application/secrets/summary-cache.yaml
+    configs:
+      - source: summary-cache
+        target: /application/configs/summary-cache.yaml
+    secrets:
+      - source: summary-cache
+        target: /application/secrets/summary-cache.yaml
+    depends_on:
+      redis:
+        condition: 'service_healthy'
+    networks:
+      - backend
     ports:
-      - '6379'
+      - '8080:8080'
+
+configs:
+  summary-cache:
+    file: docker/configs/summary-cache.yaml
+
+secrets:
+  summary-cache:
+    file: docker/secrets/summary-cache.yaml
+
+networks:
+  backend: {}

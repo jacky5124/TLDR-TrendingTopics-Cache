@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TldrTrendingTopicsSummaryCacheApplication {
+public class SummaryCacheApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TldrTrendingTopicsSummaryCacheApplication.class, args);
+        SpringApplication.run(SummaryCacheApplication.class, args);
     }
 
 }
