@@ -1,0 +1,10 @@
+name: trending-topics
+
+services:
+  summary-cache:
+    image: 'summary-cache:latest'
+    restart: 'unless-stopped'
+    environment:
+      REDIS_URL: 'rediss://<KEY>@<HOST>:<PORT>'
+    ports:
+      - '8080:8080'
