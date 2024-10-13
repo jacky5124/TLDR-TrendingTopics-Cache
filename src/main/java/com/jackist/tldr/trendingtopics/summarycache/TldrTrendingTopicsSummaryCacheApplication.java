@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TldrTrendingTopicsSummaryCacheApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TldrTrendingTopicsSummaryCacheApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TldrTrendingTopicsSummaryCacheApplication.class, args);
+    }
 
 }
