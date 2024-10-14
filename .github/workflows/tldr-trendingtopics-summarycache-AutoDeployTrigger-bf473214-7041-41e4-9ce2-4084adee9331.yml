@@ -1,0 +1,48 @@
+name: Trigger auto deployment for tldr-trendingtopics-summarycache
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - '**'
+    - '.github/workflows/tldr-trendingtopics-summarycache-AutoDeployTrigger-bf473214-7041-41e4-9ce2-4084adee9331.yml'
+
+  # Allow manual trigger 
+  workflow_dispatch:      
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions: 
+      id-token: write #This is required for requesting the OIDC JWT Token
+      contents: read #Required when GH token is used to authenticate with private repo
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.TLDRTRENDINGTOPICSSUMMARYCACHE_AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.TLDRTRENDINGTOPICSSUMMARYCACHE_AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.TLDRTRENDINGTOPICSSUMMARYCACHE_AZURE_SUBSCRIPTION_ID }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          appSourcePath: ${{ github.workspace }}
+          _dockerfilePathKey_: _dockerfilePath_
+          registryUrl: tldrtrendingtopics.azurecr.io
+          registryUsername: ${{ secrets.TLDRTRENDINGTOPICSSUMMARYCACHE_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.TLDRTRENDINGTOPICSSUMMARYCACHE_REGISTRY_PASSWORD }}
+          containerAppName: tldr-trendingtopics-summarycache
+          resourceGroup: rg-jacky5124_cache
+          imageToBuild: tldrtrendingtopics.azurecr.io/tldr-trendingtopics-summarycache:${{ github.sha }}
+          _buildArgumentsKey_: |
+            _buildArgumentsValues_
+
+
