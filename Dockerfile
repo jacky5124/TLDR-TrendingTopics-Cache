@@ -1,14 +1,11 @@
 # Perform the extraction in a separate builder container
-FROM gradle:jdk21-alpine AS builder
+FROM eclipse-temurin:21-jre-alpine AS builder
 WORKDIR /builder
-# Build the project using Gradle
-COPY --chown=gradle:gradle . .
-RUN gradle bootJar
 # This points to the built jar file in the target folder
 # Adjust this to 'target/*.jar' if you're using Maven
 ARG JAR_FILE=build/libs/*.jar
-# Move the jar file to the working directory and rename it to application.jar
-RUN mv ${JAR_FILE} . && mv *.jar application.jar
+# Copy the jar file to the working directory and rename it to application.jar
+COPY ${JAR_FILE} application.jar
 # Extract the jar file using an efficient layout
 RUN java -Djarmode=tools -jar application.jar extract --layers --destination extracted
 
