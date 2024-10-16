@@ -1,13 +1,13 @@
-package com.jackist.tldr.trendingtopics.summarycache;
+package com.jackist.tldr.trendingtopics.cache;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SummaryCacheApplication {
+public class CacheApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SummaryCacheApplication.class, args);
+        SpringApplication.run(CacheApplication.class, args);
     }
 
 }

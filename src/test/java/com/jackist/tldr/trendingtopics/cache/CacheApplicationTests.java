@@ -1,10 +1,10 @@
-package com.jackist.tldr.trendingtopics.summarycache;
+package com.jackist.tldr.trendingtopics.cache;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SummaryCacheApplicationTests {
+class CacheApplicationTests {
 
     @Test
     void contextLoads() {

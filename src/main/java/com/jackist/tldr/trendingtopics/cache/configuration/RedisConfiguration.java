@@ -1,6 +1,6 @@
-package com.jackist.tldr.trendingtopics.summarycache.configuration;
+package com.jackist.tldr.trendingtopics.cache.configuration;
 
-import com.jackist.tldr.trendingtopics.summarycache.pojo.Result;
+import com.jackist.tldr.trendingtopics.cache.pojo.Result;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;

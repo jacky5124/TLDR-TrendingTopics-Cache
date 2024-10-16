@@ -1,1 +1,1 @@
-rootProject.name = "TLDR-TrendingTopics-SummaryCache"
+rootProject.name = "TLDR-TrendingTopics-Cache"

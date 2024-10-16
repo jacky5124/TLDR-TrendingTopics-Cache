@@ -1,7 +1,7 @@
-package com.jackist.tldr.trendingtopics.summarycache.controller;
+package com.jackist.tldr.trendingtopics.cache.controller;
 
-import com.jackist.tldr.trendingtopics.summarycache.pojo.Result;
-import com.jackist.tldr.trendingtopics.summarycache.service.SummaryCacheService;
+import com.jackist.tldr.trendingtopics.cache.pojo.Result;
+import com.jackist.tldr.trendingtopics.cache.service.CacheService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1")
-public class SummaryCacheController {
-    private static final Logger logger = LoggerFactory.getLogger(SummaryCacheController.class);
+public class CacheController {
+    private static final Logger logger = LoggerFactory.getLogger(CacheController.class);
 
-    private final SummaryCacheService summaryCacheService;
+    private final CacheService cacheService;
 
-    public SummaryCacheController(SummaryCacheService summaryCacheService) {
-        this.summaryCacheService = summaryCacheService;
+    public CacheController(CacheService cacheService) {
+        this.cacheService = cacheService;
     }
 
     @GetMapping("/trending-topics")
@@ -23,7 +23,7 @@ public class SummaryCacheController {
         logger.info("Getting summary cache for {}", mkt);
         Result result;
         try {
-            result = summaryCacheService.get(mkt);
+            result = cacheService.get(mkt);
         } catch (Exception e) {
             String error = "Error getting summary cache for %s".formatted(mkt);
             logger.error(error, e);
@@ -36,7 +36,7 @@ public class SummaryCacheController {
     public ResponseEntity<String> put(@RequestParam("mkt") String mkt, @RequestBody Result result) {
         logger.info("Updating summary cache for {}", mkt);
         try {
-            summaryCacheService.put(mkt, result);
+            cacheService.put(mkt, result);
         } catch (Exception e) {
             String error = "Error updating summary cache for %s".formatted(mkt);
             logger.error(error, e);
