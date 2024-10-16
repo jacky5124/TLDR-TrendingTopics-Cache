@@ -24,6 +24,19 @@ jobs:
       - name: Checkout to the branch
         uses: actions/checkout@v2
 
+      - name: Set up Gradle cache
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'gradle'
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build jar with Gradle
+        run: ./gradlew bootJar --no-daemon
+
       - name: Azure Login
         uses: azure/login@v1
         with:
