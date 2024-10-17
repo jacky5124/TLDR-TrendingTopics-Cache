@@ -5,6 +5,9 @@ services:
     image: 'summary-cache:latest'
     restart: 'unless-stopped'
     environment:
-      REDIS_URL: 'rediss://<KEY>@<HOST>:<PORT>'
+      SPRING_ACTIVE_PROFILES: 'test'
+      REDIS_HOST: '<host>'
+      REDIS_PORT: <port>
+      REDIS_PASSWORD: '<password>'
     ports:
       - '8080:8080'
