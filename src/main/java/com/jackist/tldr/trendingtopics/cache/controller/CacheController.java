@@ -4,12 +4,8 @@ import com.jackist.tldr.trendingtopics.cache.pojo.Result;
 import com.jackist.tldr.trendingtopics.cache.service.CacheService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/v1")
@@ -47,14 +43,5 @@ public class CacheController {
             return ResponseEntity.internalServerError().body("Error");
         }
         return ResponseEntity.ok("Success");
-    }
-
-    @GetMapping("/test")
-    public ResponseEntity<String> test(@RequestHeader HttpHeaders headers) {
-        StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, List<String>> entry : headers.entrySet()) {
-            sb.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
-        }
-        return ResponseEntity.ok(sb.toString());
     }
 }
