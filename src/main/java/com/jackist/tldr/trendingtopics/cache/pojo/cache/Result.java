@@ -1,4 +1,4 @@
-package com.jackist.tldr.trendingtopics.cache.pojo;
+package com.jackist.tldr.trendingtopics.cache.pojo.cache;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.jackist.tldr.trendingtopics.cache.service;
 
-import com.jackist.tldr.trendingtopics.cache.pojo.Result;
+import com.jackist.tldr.trendingtopics.cache.pojo.cache.Result;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.stereotype.Service;
 

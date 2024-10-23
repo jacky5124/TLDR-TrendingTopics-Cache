@@ -1,6 +1,6 @@
 package com.jackist.tldr.trendingtopics.cache.controller;
 
-import com.jackist.tldr.trendingtopics.cache.pojo.Result;
+import com.jackist.tldr.trendingtopics.cache.pojo.cache.Result;
 import com.jackist.tldr.trendingtopics.cache.service.CacheService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

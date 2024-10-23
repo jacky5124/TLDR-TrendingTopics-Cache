@@ -7,6 +7,7 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
       start_period: '10s'
+      start_interval: '1s'
     networks:
       - backend
   summary-cache:
